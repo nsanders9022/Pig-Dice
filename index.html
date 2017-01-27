@@ -14,16 +14,28 @@
         <h1>Pig Dice</h1>
       </div>
 
-      <button id="roll" type="button" class="btn btn-info">Click here to roll</button>
+      <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+          <button id="roll" type="button" class="btn btn-info">Click here to roll</button>
+          <button id="hold" type="button" class="btn btn-info">Hold</button>
+          <h3>You rolled a: <span id="roll-number"></span></h3>
+        </div>
+        <div class="col-sm-4">
+        </div>
+      </div>
 
-      <button id="hold" type="button" class="btn btn-info">Hold</button>
-
-      <h3>You rolled a: <span id="roll-number"></span></h3>
-
-      <h3>Player 1, your total is: <span id="player1-total"></span></h3>
-      <h3>Player 2, your total is: <span id="player2-total"></span></h3>
-
-
+      <div class="row">
+        <div class="col-sm-6">
+          <h3>Player 1 turn: <span id="player1-turn-total"></span></h3>
+          <h3>Player 1 total: <span id="player1-total"></span></h3>
+        </div>
+        <div class="col-sm-6">
+          <h3>Player 2 turn: <span id="player2-turn-total"></span></h3>
+          <h3>Player 2 total: <span id="player2-total"></span></h3>
+        </div>
+      </div>
 
     </div>
   </body>

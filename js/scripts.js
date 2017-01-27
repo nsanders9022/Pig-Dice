@@ -13,8 +13,12 @@ Player.prototype.rollDice = function() {
 Player.prototype.turnTotal = function() {
   var diceTotal = 0;
 
-  for (var i = 0; i < this.turnArray.length; i++) {
-    diceTotal += parseInt(this.turnArray[i]);
+  if (this.rollDice() !== 1) {
+    for (var i = 0; i < this.turnArray.length; i++) {
+      diceTotal += parseInt(this.turnArray[i]);
+    }
+  } else {
+    turnArray.empty();
   }
   return diceTotal;
 }
@@ -36,7 +40,7 @@ Player.prototype.playerState = function() {
 }
 
 
-
+//User Logic
 $(document).ready(function() {
 
   var player1 = new Player();
@@ -45,8 +49,6 @@ $(document).ready(function() {
   $("#roll").click(function() {
     var thisRoll = player1.rollDice();
     player1.turnArray.push(thisRoll);
-
-
 
     $("#roll-number").text(thisRoll);
 
