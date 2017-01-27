@@ -20,7 +20,13 @@ Player.prototype.turnTotal = function() {
 
 // Adds the turn sum to the total sum
 Player.prototype.sumTotal = function() {
-  
+
+  var totalTotal = 0
+  for (var i = 0; i < this.turnArray.length; i++) {
+    this.totalSumArray.push(this.turnArray[i]);
+    totalTotal += parseInt(this.totalSumArray[i]);
+  }
+  return totalTotal;
 }
 
 
@@ -31,8 +37,7 @@ $(document).ready(function() {
 
   $("#roll").click(function() {
     var thisRoll = player1.rollDice();
-    if (thisRoll == 1) {
-      alert("Sorry, you rolled a 1")
+    if (thisRoll === 1) {
       player1.turnArray = []
     } else {
       player1.turnArray.push(thisRoll);
@@ -42,4 +47,11 @@ $(document).ready(function() {
 
     $("#player1-turn-total").text(player1.turnTotal());
   })
+
+  $("#hold").click(function() {
+
+    $("#player1-total").text(player1.sumTotal())
+    player1.turnArray = [];
+  })
+
 })
