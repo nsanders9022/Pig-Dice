@@ -32,6 +32,12 @@ Player.prototype.sumTotal = function() {
   return totalTotal;
 }
 
+Player.prototype.checkWin = function(total) {
+  if (total >= 100) {
+    return alert("You won!");
+  }
+}
+
 
 //User Logic
 $(document).ready(function() {
@@ -56,5 +62,8 @@ $(document).ready(function() {
     $("#player1-total").text(player1.sumTotal())
     player1.turnArray = [];
     $("#player1-turn-total").text(0);
+    $("#roll-number").text("");
   })
+
+  player1.checkWin(player1.sumTotal());
 })
