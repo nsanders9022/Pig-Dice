@@ -52,6 +52,7 @@ $(document).ready(function() {
 
     $("#player1-total").text(player1.sumTotal())
     player1.turnArray = [];
+    $("#player1-turn-total").text(0);
   })
 
 })
