@@ -1,6 +1,6 @@
 function Player() {
-  this.totalSumArray = [];
   this.turnArray = [];
+  this.totalSumArray = [];
 }
 
 //gets random number between 1 and 6
@@ -20,11 +20,14 @@ Player.prototype.turnTotal = function() {
 
 // Adds the turn sum to the total sum
 Player.prototype.sumTotal = function() {
-
   var totalTotal = 0
   for (var i = 0; i < this.turnArray.length; i++) {
     this.totalSumArray.push(this.turnArray[i]);
-    totalTotal += parseInt(this.totalSumArray[i]);
+    // totalTotal += parseInt(this.totalSumArray[i]);
+  }
+
+  for (var j = 0; j <this.totalSumArray.length; j++) {
+    totalTotal += parseInt(this.totalSumArray[j]);
   }
   return totalTotal;
 }
@@ -54,5 +57,4 @@ $(document).ready(function() {
     player1.turnArray = [];
     $("#player1-turn-total").text(0);
   })
-
 })
