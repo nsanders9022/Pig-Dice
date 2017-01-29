@@ -3,9 +3,18 @@ function Game(player1, player2) {
   this.playerArray.push(player1,player2)
 }
 
-function Player() {
+function Player(identifier) {
+  this.identifier = identifier;
   this.turnArray = [];
   this.totalSumArray = [];
+}
+
+Player.prototype.switchPlayer = function() {
+  if (this.identifier === 1) {
+    this.identifier === 2;
+  } else {
+    this.identifier === 1;
+  }
 }
 
 //gets random number between 1 and 6
@@ -46,8 +55,8 @@ Player.prototype.sumTotal = function() {
 //User Logic
 $(document).ready(function() {
 
-  var player1 = new Player();
-  var player2 = new Player();
+  var player1 = new Player(1);
+  var player2 = new Player(2);
 
   var game1 = new Game(player1, player2);
 
