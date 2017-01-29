@@ -1,3 +1,8 @@
+function Game(player1, player2) {
+  this.playerArray = [];
+  this.playerArray.push(player1,player2)
+}
+
 function Player() {
   this.turnArray = [];
   this.totalSumArray = [];
@@ -31,7 +36,7 @@ Player.prototype.sumTotal = function() {
   if (totalTotal < 100) {
     return totalTotal;
   } else {
-    alert("you won");
+    alert("You won!");
     return totalTotal;
   }
 }
@@ -42,6 +47,9 @@ Player.prototype.sumTotal = function() {
 $(document).ready(function() {
 
   var player1 = new Player();
+  var player2 = new Player();
+
+  var game1 = new Game(player1, player2);
 
   $("#roll").click(function() {
     var thisRoll = player1.rollDice();
