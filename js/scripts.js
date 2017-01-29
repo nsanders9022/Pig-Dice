@@ -15,6 +15,7 @@ Player.prototype.switchPlayer = function() {
   } else {
     this.identifier === 1;
   }
+  console.log("next players turn");
 }
 
 //gets random number between 1 and 6
@@ -64,6 +65,7 @@ $(document).ready(function() {
     var thisRoll = player1.rollDice();
     if (thisRoll === 1) {
       player1.turnArray = []
+      player1.switchPlayer();
     } else {
       player1.turnArray.push(thisRoll);
     }
@@ -79,5 +81,6 @@ $(document).ready(function() {
     player1.turnArray = [];
     $("#player1-turn-total").text(0);
     $("#roll-number").text("");
+    player1.switchPlayer();
   })
 })
