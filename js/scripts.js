@@ -23,20 +23,19 @@ Player.prototype.sumTotal = function() {
   var totalTotal = 0
   for (var i = 0; i < this.turnArray.length; i++) {
     this.totalSumArray.push(this.turnArray[i]);
-    // totalTotal += parseInt(this.totalSumArray[i]);
   }
 
   for (var j = 0; j <this.totalSumArray.length; j++) {
     totalTotal += parseInt(this.totalSumArray[j]);
   }
-  return totalTotal;
-}
-
-Player.prototype.checkWin = function(total) {
-  if (total >= 100) {
-    return alert("You won!");
+  if (totalTotal < 100) {
+    return totalTotal;
+  } else {
+    alert("you won");
+    return totalTotal;
   }
 }
+
 
 
 //User Logic
@@ -64,6 +63,4 @@ $(document).ready(function() {
     $("#player1-turn-total").text(0);
     $("#roll-number").text("");
   })
-
-  player1.checkWin(player1.sumTotal());
 })
