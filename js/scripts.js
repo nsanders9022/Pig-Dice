@@ -1,21 +1,24 @@
 function Game(player1, player2) {
   this.playerArray = [];
   this.playerArray.push(player1,player2)
+  this.playerState = 0;
+  this.currentPlayer = this.playerArray[this.playerState]
 }
 
-function Player(identifier) {
+function Player(name,identifier) {
+  this.name = name;
   this.identifier = identifier;
   this.turnArray = [];
   this.totalSumArray = [];
 }
 
-Player.prototype.switchPlayer = function() {
-  if (this.identifier === 1) {
-    this.identifier === 2;
+Game.prototype.switchPlayer = function() {
+  if (this.playerState === 0) {
+    this.playerstate === 1;
   } else {
-    this.identifier === 1;
+    this.playerState === 0;
   }
-  console.log("next players turn");
+  console.log(this.currentPlayer.name + "turn");
 }
 
 //gets random number between 1 and 6
@@ -56,16 +59,18 @@ Player.prototype.sumTotal = function() {
 //User Logic
 $(document).ready(function() {
 
-  var player1 = new Player(1);
-  var player2 = new Player(2);
+  var player1 = new Player("player1", 1);
+  var player2 = new Player("player2", 2);
 
   var game1 = new Game(player1, player2);
+
+  currentGame = game1;
 
   $("#roll").click(function() {
     var thisRoll = player1.rollDice();
     if (thisRoll === 1) {
       player1.turnArray = []
-      player1.switchPlayer();
+      currentGame.switchPlayer();
     } else {
       player1.turnArray.push(thisRoll);
     }
@@ -81,6 +86,6 @@ $(document).ready(function() {
     player1.turnArray = [];
     $("#player1-turn-total").text(0);
     $("#roll-number").text("");
-    player1.switchPlayer();
+    currentGame.switchPlayer();
   })
 })
