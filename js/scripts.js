@@ -66,32 +66,46 @@ $(document).ready(function() {
 
   currentGame = game1;
 
-
   $("#roll").click(function() {
-    var thisRoll = currentGame.currentPlayer.rollDice();
-    if (thisRoll === 1) {
-      currentGame.currentPlayer.turnArray = []
-      console.log(currentGame.playerArray[0].name + "'s turn");
-      console.log(currentGame.playerArray[1].name + " not turn");
-      currentGame.switchPlayer();
-    } else {
-      currentGame.currentPlayer.turnArray.push(thisRoll);
+    if (currentGame.playerArray[0].identifier === 1) {
+
+      var thisRoll = currentGame.currentPlayer.rollDice();
+      if (thisRoll === 1) {
+        currentGame.currentPlayer.turnArray = []
+        currentGame.switchPlayer();
+      } else {
+        currentGame.currentPlayer.turnArray.push(thisRoll);
+      }
+      $("#roll-number").text(thisRoll);
+      $("#player1-turn-total").text(currentGame.currentPlayer.turnTotal());
+    } else if (currentGame.playerArray[0].identifier === 2) {
+      var thisRoll = currentGame.currentPlayer.rollDice();
+      if (thisRoll === 1) {
+        currentGame.currentPlayer.turnArray = [];
+        currentGame.switchPlayer();
+      } else {
+        currentGame.currentPlayer.turnArray.push(thisRoll);
+      }
+      $("#roll-number").text(thisRoll);
+      $("#player2-turn-total").text(currentGame.currentPlayer.turnTotal());
     }
+  });
 
-    $("#roll-number").text(thisRoll);
-
-    $("#player1-turn-total").text(currentGame.currentPlayer.turnTotal());
-  })
 
   $("#hold").click(function() {
+    if (currentGame.playerArray[0].identifier === 1) {
+      $("#player1-total").text(currentGame.currentPlayer.sumTotal())
+      currentGame.currentPlayer.turnArray = [];
+      $("#player1-turn-total").text(0);
+      $("#roll-number").text("");
+      currentGame.switchPlayer();
 
-    $("#player1-total").text(currentGame.currentPlayer.sumTotal())
-    currentGame.currentPlayer.turnArray = [];
-    $("#player1-turn-total").text(0);
-    $("#roll-number").text("");
-
-    currentGame.switchPlayer();
-    console.log(currentGame.playerArray[0].name + "'s turn");
-    console.log(currentGame.playerArray[1].name + " not turn");
-  })
+    } if (currentGame.playerArray[0].identifier === 2) {
+      $("#player2-total").text(currentGame.currentPlayer.sumTotal())
+      currentGame.currentPlayer.turnArray = [];
+      $("#player2-turn-total").text(0);
+      $("#roll-number").text("");
+      currentGame.switchPlayer();
+    }
+  });
 })
