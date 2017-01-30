@@ -59,6 +59,8 @@ $(document).ready(function() {
   $("#name-form").submit(function(event) {
     event.preventDefault();
 
+    $(".row").show();
+
      var player1Name = $("#player1-name").val();
      var player2Name = $("#player2-name").val();
 

@@ -17,3 +17,7 @@ h1 {
   padding: 50px;
   background-color: rgb(158, 214, 206);
 }
+
+.row {
+  display: none;
+}
