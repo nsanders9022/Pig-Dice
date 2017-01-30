@@ -51,55 +51,70 @@ Player.prototype.sumTotal = function() {
 
 
 
+
 //User Logic
 $(document).ready(function() {
 
-  var player1 = new Player("player1", 1);
-  var player2 = new Player("player2", 2);
 
-  var game1 = new Game(player1, player2);
+  $("#name-form").submit(function(event) {
+    event.preventDefault();
 
-  currentGame = game1;
+     var player1Name = $("#player1-name").val();
+     var player2Name = $("#player2-name").val();
 
-  $("#roll").click(function() {
-    if (currentGame.playerArray[0].identifier === 1) {
-      var thisRoll = player1.rollDice();
-      if (thisRoll === 1) {
-        player1.turnArray = []
-        currentGame.switchPlayer();
-      } else {
-        player1.turnArray.push(thisRoll);
+    $(".player-overlay").hide();
+
+    $(".one-name").text(player1Name);
+    $(".two-name").text(player2Name);
+
+
+    var player1 = new Player(player1Name, 1);
+    var player2 = new Player(player2Name, 2);
+
+    var game1 = new Game(player1, player2);
+
+    currentGame = game1;
+
+    $("#roll").click(function() {
+      if (currentGame.playerArray[0].identifier === 1) {
+        var thisRoll = player1.rollDice();
+        if (thisRoll === 1) {
+          player1.turnArray = []
+          currentGame.switchPlayer();
+        } else {
+          player1.turnArray.push(thisRoll);
+        }
+        $("#roll-number-player1").text(thisRoll);
+        $("#player1-turn-total").text(player1.turnTotal());
+      } else if (currentGame.playerArray[0].identifier === 2) {
+        var thisRoll = player2.rollDice();
+        if (thisRoll === 1) {
+          player2.turnArray = [];
+          currentGame.switchPlayer();
+        } else {
+          player2.turnArray.push(thisRoll);
+        }
+        $("#roll-number-player2").text(thisRoll);
+        $("#player2-turn-total").text(player2.turnTotal());
       }
-      $("#roll-number-player1").text(thisRoll);
-      $("#player1-turn-total").text(player1.turnTotal());
-    } else if (currentGame.playerArray[0].identifier === 2) {
-      var thisRoll = player2.rollDice();
-      if (thisRoll === 1) {
+    });
+
+
+    $("#hold").click(function() {
+      if (currentGame.playerArray[0].identifier === 1) {
+        $("#player1-total").text(player1.sumTotal())
+        player1.turnArray = [];
+        $("#player1-turn-total").text(0);
+        $("#roll-number-player1").text("");
+        currentGame.switchPlayer();
+
+      } else if (currentGame.playerArray[0].identifier === 2) {
+        $("#player2-total").text(player2.sumTotal())
         player2.turnArray = [];
+        $("#player2-turn-total").text(0);
+        $("#roll-number-player2").text("");
         currentGame.switchPlayer();
-      } else {
-        player2.turnArray.push(thisRoll);
       }
-      $("#roll-number-player2").text(thisRoll);
-      $("#player2-turn-total").text(player2.turnTotal());
-    }
-  });
-
-
-  $("#hold").click(function() {
-    if (currentGame.playerArray[0].identifier === 1) {
-      $("#player1-total").text(player1.sumTotal())
-      player1.turnArray = [];
-      $("#player1-turn-total").text(0);
-      $("#roll-number-player1").text("");
-      currentGame.switchPlayer();
-
-    } else if (currentGame.playerArray[0].identifier === 2) {
-      $("#player2-total").text(player2.sumTotal())
-      player2.turnArray = [];
-      $("#player2-turn-total").text(0);
-      $("#roll-number-player2").text("");
-      currentGame.switchPlayer();
-    }
-  });
+    });
+  })
 })
