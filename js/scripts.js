@@ -1,7 +1,6 @@
 function Game(player1, player2) {
   this.playerArray = [];
   this.playerArray.push(player1,player2)
-  // this.playerState = 0;
   this.currentPlayer = this.playerArray[0]
 }
 
@@ -12,12 +11,8 @@ function Player(name,identifier) {
   this.totalSumArray = [];
 }
 
+//Reverses the order of the player array
 Game.prototype.switchPlayer = function() {
-  // if (this.playerState === 0) {
-  //   this.playerState === 1;
-  // } else {
-  //   this.playerState === 0;
-  // }
   this.playerArray.reverse();
 }
 
@@ -68,41 +63,40 @@ $(document).ready(function() {
 
   $("#roll").click(function() {
     if (currentGame.playerArray[0].identifier === 1) {
-
-      var thisRoll = currentGame.currentPlayer.rollDice();
+      var thisRoll = player1.rollDice();
       if (thisRoll === 1) {
-        currentGame.currentPlayer.turnArray = []
+        player1.turnArray = []
         currentGame.switchPlayer();
       } else {
-        currentGame.currentPlayer.turnArray.push(thisRoll);
+        player1.turnArray.push(thisRoll);
       }
       $("#roll-number").text(thisRoll);
-      $("#player1-turn-total").text(currentGame.currentPlayer.turnTotal());
+      $("#player1-turn-total").text(player1.turnTotal());
     } else if (currentGame.playerArray[0].identifier === 2) {
-      var thisRoll = currentGame.currentPlayer.rollDice();
+      var thisRoll = player2.rollDice();
       if (thisRoll === 1) {
-        currentGame.currentPlayer.turnArray = [];
+        player2.turnArray = [];
         currentGame.switchPlayer();
       } else {
-        currentGame.currentPlayer.turnArray.push(thisRoll);
+        player2.turnArray.push(thisRoll);
       }
       $("#roll-number").text(thisRoll);
-      $("#player2-turn-total").text(currentGame.currentPlayer.turnTotal());
+      $("#player2-turn-total").text(player2.turnTotal());
     }
   });
 
 
   $("#hold").click(function() {
     if (currentGame.playerArray[0].identifier === 1) {
-      $("#player1-total").text(currentGame.currentPlayer.sumTotal())
-      currentGame.currentPlayer.turnArray = [];
+      $("#player1-total").text(player1.sumTotal())
+      player1.turnArray = [];
       $("#player1-turn-total").text(0);
       $("#roll-number").text("");
       currentGame.switchPlayer();
 
-    } if (currentGame.playerArray[0].identifier === 2) {
-      $("#player2-total").text(currentGame.currentPlayer.sumTotal())
-      currentGame.currentPlayer.turnArray = [];
+    } else if (currentGame.playerArray[0].identifier === 2) {
+      $("#player2-total").text(player2.sumTotal())
+      player2.turnArray = [];
       $("#player2-turn-total").text(0);
       $("#roll-number").text("");
       currentGame.switchPlayer();
