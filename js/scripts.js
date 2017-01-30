@@ -70,7 +70,7 @@ $(document).ready(function() {
       } else {
         player1.turnArray.push(thisRoll);
       }
-      $("#roll-number").text(thisRoll);
+      $("#roll-number-player1").text(thisRoll);
       $("#player1-turn-total").text(player1.turnTotal());
     } else if (currentGame.playerArray[0].identifier === 2) {
       var thisRoll = player2.rollDice();
@@ -80,7 +80,7 @@ $(document).ready(function() {
       } else {
         player2.turnArray.push(thisRoll);
       }
-      $("#roll-number").text(thisRoll);
+      $("#roll-number-player2").text(thisRoll);
       $("#player2-turn-total").text(player2.turnTotal());
     }
   });
@@ -91,14 +91,14 @@ $(document).ready(function() {
       $("#player1-total").text(player1.sumTotal())
       player1.turnArray = [];
       $("#player1-turn-total").text(0);
-      $("#roll-number").text("");
+      $("#roll-number-player1").text("");
       currentGame.switchPlayer();
 
     } else if (currentGame.playerArray[0].identifier === 2) {
       $("#player2-total").text(player2.sumTotal())
       player2.turnArray = [];
       $("#player2-turn-total").text(0);
-      $("#roll-number").text("");
+      $("#roll-number-player2").text("");
       currentGame.switchPlayer();
     }
   });
