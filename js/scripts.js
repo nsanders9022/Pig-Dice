@@ -44,7 +44,7 @@ Player.prototype.sumTotal = function() {
   if (totalTotal < 100) {
     return totalTotal;
   } else {
-    alert("You won!");
+    alert(this.name +" won!");
     return totalTotal;
   }
 }
